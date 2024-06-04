@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'throttle' => [
+        'max_attempts' => 5,
+        'decay_minutes' => 1,
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -113,3 +117,4 @@ return [
     'password_timeout' => env('AUTH_PASSWORD_TIMEOUT', 10800),
 
 ];
+

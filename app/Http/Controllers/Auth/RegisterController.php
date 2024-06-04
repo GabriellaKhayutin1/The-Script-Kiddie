@@ -18,15 +18,24 @@ class RegisterController extends Controller
     {
         // Remove middleware line here
     }
+ protected function validator(array $data)
+ {
+     return Validator::make($data, [
+         'name' => ['required', 'string', 'max:255'],
+         'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+         'password' => [
+             'required',
+             'string',
+             'min:12',
+             'regex:/[A-Z]/', // Must contain an uppercase letter
+             'regex:/[a-z]/', // Must contain a lowercase letter
+             'regex:/[0-9]/', // Must contain a digit
+             'regex:/[@$!%*?&]/', // Must contain a special character
+             'confirmed'
+         ],
+     ]);
+ }
 
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
-    }
 
     protected function create(array $data)
     {
