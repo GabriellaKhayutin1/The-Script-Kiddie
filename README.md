@@ -64,3 +64,39 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+---
+
+# Laravel Blog Application
+
+This is a Laravel application demonstrating access control to prevent IDOR and session hijacking prevention.
+
+## Features
+
+- Users can create, view, edit, and delete their own blog posts.
+- Access control is enforced to prevent users from accessing or modifying other users' posts.
+- Secure password handling and session management to prevent session hijacking.
+
+## Access-Controlled Features
+
+- **Create Post**: `/posts/create` (Authenticated users only)
+- **Edit Post**: `/posts/{id}/edit` (Only the owner of the post can edit)
+- **View Post**: `/posts/{id}` (Only the owner of the post can view)
+- **Delete Post**: `/posts/{id}` (Only the owner of the post can delete)
+
+## Hosted Application
+
+The application is hosted at: 
+
+## Instructions
+
+1. Register an account or log in.
+2. Create a new post from the "Create Post" page.
+3. Edit or delete your post from the post list.
+4. Attempting to access or modify another user's post will result in an access denied error.
+
+## Security Configurations
+
+- HTTPS is enforced in production.
+- Sessions are secured with HTTP-only and secure cookies.
+- Login attempts are throttled to prevent brute-force attacks.
