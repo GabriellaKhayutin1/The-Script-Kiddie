@@ -70,7 +70,7 @@ final class Facade
         );
 
         $directory->render($report, $target . 'index.html');
-        $dashboard->render($report, $target . 'dashboard.html');
+        $dashboard->render($report, $target . 'dashboardcontroller.html');
 
         foreach ($report as $node) {
             $id = $node->id();
@@ -79,7 +79,7 @@ final class Facade
                 Filesystem::createDirectory($target . $id);
 
                 $directory->render($node, $target . $id . '/index.html');
-                $dashboard->render($node, $target . $id . '/dashboard.html');
+                $dashboard->render($node, $target . $id . '/dashboardcontroller.html');
             } else {
                 $dir = dirname($target . $id);
 

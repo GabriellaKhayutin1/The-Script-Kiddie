@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
@@ -16,33 +16,41 @@ class RegisterController extends Controller
 
     public function __construct()
     {
-        // Remove middleware line here
+        $this->middleware('guest');
     }
- protected function validator(array $data)
- {
-     return Validator::make($data, [
-         'name' => ['required', 'string', 'max:255'],
-         'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-         'password' => [
-             'required',
-             'string',
-             'min:12',
-             'regex:/[A-Z]/', // Must contain an uppercase letter
-             'regex:/[a-z]/', // Must contain a lowercase letter
-             'regex:/[0-9]/', // Must contain a digit
-             'regex:/[@$!%*?&]/', // Must contain a special character
-             'confirmed'
-         ],
-     ]);
- }
 
+    protected function validator(array $data)
+    {
+//        return Validator::make($data, [
+//            'name' => ['required', 'string', 'max:255'],
+//            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+//            'password' => ['required']
+//        ]);
+
+        return Validator::make($data, [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => [
+                'required',
+//                'string',
+//                'min:12',
+//                'regex:/[a-z]/',
+//                'regex:/[A-Z]/',
+//                'regex:/[0-9]/',
+//                'regex:/[@$!%*#?&]/',
+//                'confirmed'
+            ],
+        ]);
+    }
 
     protected function create(array $data)
     {
+        $hashedPassword = Hash::make($data['password']);
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => bcrypt($data['password']),
+            'password' => $hashedPassword,
         ]);
     }
 }
