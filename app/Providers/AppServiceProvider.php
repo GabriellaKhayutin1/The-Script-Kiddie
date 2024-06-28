@@ -22,7 +22,7 @@ class AppServiceProvider extends ServiceProvider
     {
         // Custom password validation rule
         Validator::extend('strong_password', function ($attribute, $value, $parameters, $validator) {
-            return preg_match('/^(?=.[a-z])(?=.[A-Z])(?=.\d)(?=.[@$!%?&])[A-Za-z\d@$!%?&]{12,}$/', $value);
+            return preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{12,}$/', $value);
         });
 
         Validator::replacer('strong_password', function ($message, $attribute, $rule, $parameters) {

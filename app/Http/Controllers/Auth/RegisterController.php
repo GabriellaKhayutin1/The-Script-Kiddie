@@ -32,13 +32,13 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => [
                 'required',
-//                'string',
-//                'min:12',
-//                'regex:/[a-z]/',
-//                'regex:/[A-Z]/',
-//                'regex:/[0-9]/',
-//                'regex:/[@$!%*#?&]/',
-//                'confirmed'
+                'string',
+                'min:12',
+                'regex:/[a-z]/',
+                'regex:/[A-Z]/',
+                'regex:/[0-9]/',
+                'regex:/[@$!%*#?&]/',
+                'confirmed'
             ],
         ]);
     }

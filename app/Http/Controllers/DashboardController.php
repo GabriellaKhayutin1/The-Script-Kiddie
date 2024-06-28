@@ -3,14 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\View\View;
 
 class DashboardController extends Controller
 {
     /**
      * Display the dashboard.
      *
-     * @return View
+     * @return \Illuminate\View\View
      */
     public function index()
     {
