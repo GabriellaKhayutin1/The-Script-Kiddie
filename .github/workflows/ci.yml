@@ -23,10 +23,10 @@ jobs:
         options: --health-cmd="mysqladmin ping --silent" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
-      - uses: actions/checkout@v3  # Ensure you are using v3
+      - uses: actions/checkout@v3
 
       - name: Set up PHP
-        uses: shivammathur/setup-php@v2  # Verify this action is compatible with Node.js 20
+        uses: shivammathur/setup-php@v3
         with:
           php-version: '8.2'
           extensions: mbstring, intl, dom, pdo, pdo_mysql
@@ -47,7 +47,7 @@ jobs:
           DB_CONNECTION: mysql
           DB_HOST: 127.0.0.1
           DB_PORT: 3306
-          DB_DATABASE: script
+          DB_DATABASE: test_db
           DB_USERNAME: root
           DB_PASSWORD: root
         run: php artisan migrate
