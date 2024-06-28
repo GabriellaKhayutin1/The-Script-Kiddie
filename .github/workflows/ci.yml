@@ -23,7 +23,7 @@ jobs:
         options: --health-cmd="mysqladmin ping --silent" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@main
 
       - name: Setup PHP Action
         uses: shivammathur/setup-php@2.31.0
